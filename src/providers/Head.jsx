@@ -1,5 +1,5 @@
-import { Helmet } from "react-helmet";
 import PropTypes from "prop-types";
+import { Helmet } from "react-helmet-async";
 
 const Head = ({title}) => {
     return (

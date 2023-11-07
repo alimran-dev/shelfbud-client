@@ -29,12 +29,12 @@ const Navbar = () => {
         <div className="flex items-center md:order-2">
           {user ? (
             <>
-              <button
+              <div
                 onClick={() => {
                   setIsOpen(!isOpen);
                   setOpenDas(false);
                 }}
-                className="relative hidden md:block"
+                className="relative hidden md:block hover:cursor-pointer"
               >
                 <img
                   src={photoURL}
@@ -54,6 +54,7 @@ const Navbar = () => {
                     <ul className="py-2">
                       <li>
                         <Link
+                          onClick={() => setIsOpen(false)}
                           to={"/settings"}
                           className="block px-4 py-1 font-medium text-gray-700 hover:bg-gray-100"
                         >
@@ -69,15 +70,13 @@ const Navbar = () => {
                     </ul>
                   </div>
                 </div>
-              </button>
-              <button
-                data-collapse-toggle="navbar-user"
-                type="button"
+              </div>
+              <div
                 onClick={() => {
                   setIsOpen(!isOpen);
                   setOpenDas(false);
                 }}
-                className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+                className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600 hover:cursor-pointer"
                 aria-controls="navbar-user"
                 aria-expanded="false"
               >
@@ -115,6 +114,7 @@ const Navbar = () => {
                     <ul className="py-1">
                       <li>
                         <Link
+                          onClick={() => setIsOpen(false)}
                           to={"/"}
                           className="block px-4 py-1 font-medium text-sm text-gray-700 hover:bg-gray-200"
                         >
@@ -123,6 +123,7 @@ const Navbar = () => {
                       </li>
                       <li>
                         <Link
+                          onClick={() => setIsOpen(false)}
                           to={"/services"}
                           className="block px-4 py-1 font-medium text-sm text-gray-700 hover:bg-gray-200"
                         >
@@ -131,6 +132,7 @@ const Navbar = () => {
                       </li>
                       <li>
                         <Link
+                          onClick={() => setIsOpen(false)}
                           to={"/myServices"}
                           className="block px-4 py-1 font-medium text-sm text-gray-700 hover:bg-gray-200"
                         >
@@ -139,6 +141,7 @@ const Navbar = () => {
                       </li>
                       <li>
                         <Link
+                          onClick={() => setIsOpen(false)}
                           to={"/addServices"}
                           className="block px-4 py-1 font-medium text-sm text-gray-700 hover:bg-gray-200"
                         >
@@ -147,6 +150,7 @@ const Navbar = () => {
                       </li>
                       <li>
                         <Link
+                          onClick={() => setIsOpen(false)}
                           to={"/mySchedules"}
                           className="block px-4 py-1 font-medium text-sm text-gray-700 hover:bg-gray-200"
                         >
@@ -155,7 +159,8 @@ const Navbar = () => {
                       </li>
                       <li>
                         <Link
-                          to={"/addServices"}
+                          onClick={() => setIsOpen(false)}
+                          to={"/settings"}
                           className="block px-4 py-1 font-medium text-sm text-gray-700 hover:bg-gray-200"
                         >
                           Settings
@@ -172,7 +177,7 @@ const Navbar = () => {
                     </ul>
                   </div>
                 </div>
-              </button>
+              </div>
             </>
           ) : (
             <>
@@ -211,6 +216,7 @@ const Navbar = () => {
                     <ul className="py-2">
                       <li>
                         <Link
+                          onClick={() => setIsOpen(false)}
                           to={"/"}
                           className="block px-4 py-1 font-medium text-sm text-gray-700 hover:bg-gray-100"
                         >
@@ -219,6 +225,7 @@ const Navbar = () => {
                       </li>
                       <li>
                         <Link
+                          onClick={() => setIsOpen(false)}
                           to={"/services"}
                           className="block px-4 py-1 font-medium text-sm text-gray-700 hover:bg-gray-100"
                         >
@@ -227,6 +234,7 @@ const Navbar = () => {
                       </li>
                       <li>
                         <Link
+                          onClick={() => setIsOpen(false)}
                           to={"/login"}
                           className="block bg-gray-700 text-white py-1 px-3 rounded font-semibold mx-2 my-1"
                         >
@@ -250,6 +258,10 @@ const Navbar = () => {
               <>
                 <li className="relative group">
                   <NavLink
+                    onClick={() => {
+                      setIsOpen(false);
+                      setOpenDas(false);
+                    }}
                     to={"/"}
                     className={({ isActive, isPending }) =>
                       isPending
@@ -266,6 +278,10 @@ const Navbar = () => {
                 </li>
                 <li className="relative group">
                   <NavLink
+                    onClick={() => {
+                      setIsOpen(false);
+                      setOpenDas(false);
+                    }}
                     to={"/services"}
                     className={({ isActive, isPending }) =>
                       isPending
@@ -295,6 +311,7 @@ const Navbar = () => {
                       <ul className="py-2">
                         <li>
                           <Link
+                            onClick={() => setOpenDas(false)}
                             to={"/myServices"}
                             className="block px-4 py-1 font-medium text-gray-700 hover:bg-gray-100"
                           >
@@ -303,6 +320,7 @@ const Navbar = () => {
                         </li>
                         <li>
                           <Link
+                            onClick={() => setOpenDas(false)}
                             to={"/addServices"}
                             className="block px-4 py-1 font-medium text-gray-700 hover:bg-gray-100"
                           >
@@ -311,6 +329,7 @@ const Navbar = () => {
                         </li>
                         <li>
                           <Link
+                            onClick={() => setOpenDas(false)}
                             to={"/mySchedules"}
                             className="block px-4 py-1 font-medium text-gray-700 hover:bg-gray-100"
                           >
