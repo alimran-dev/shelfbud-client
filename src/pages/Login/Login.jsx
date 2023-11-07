@@ -1,13 +1,54 @@
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../providers/AuthProvider";
+import Swal from "sweetalert2";
 
 const Login = () => {
-    const handleLogin = e => {
-        e.preventDefault();
-        const form = e.target;
-        const email = form.email.value;
-        const password = form.password.value;
-        console.log(email, password);
-    }
+  const [error, setError] = useState();
+  const { user, loginUser, setUser, googleLogin} =
+    useContext(AuthContext);
+  const handleLogin = (e) => {
+    e.preventDefault();
+    setError(null);
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    console.log(email, password);
+    loginUser(email, password)
+      .then((result) => {
+          setUser(result.user);
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Logged in successfully",
+            showConfirmButton: false,
+              timer: 1500,
+          });
+      })
+      .catch((error) => {
+        console.error(error.message);
+        setError(error.message);
+      });
+  };
+  const handleGoogle = () => {
+    setError(null);
+    googleLogin()
+      .then((result) => {
+          setUser(result.user);
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Logged in successfully",
+            showConfirmButton: false,
+              timer: 1500,
+          });
+      })
+      .catch((error) => {
+        console.error(error.message);
+        setError(error.message);
+      });
+  };
+  console.log(user);
   return (
     <div className="flex flex-col items-center my-10 mx-10">
       <div className="w-full max-w-md p-4 rounded-md shadow-xl sm:p-8 bg-[#E8DFCA] text-gray-700">
@@ -24,6 +65,7 @@ const Login = () => {
           <button
             aria-label="Login with Google"
             type="button"
+            onClick={handleGoogle}
             className="flex items-center justify-center w-full p-2.5 space-x-4 border rounded-md focus:ri focus:ri border-gray-400 focus:ri"
           >
             <svg
@@ -41,7 +83,7 @@ const Login = () => {
           <p className="px-3 text-gray-600">OR</p>
           <hr className="w-full text-gray-500" />
         </div>
-        <form onSubmit={handleLogin} className="space-y-8">
+        <form onSubmit={handleLogin} className="space-y-5">
           <div className="space-y-4">
             <div className="space-y-2">
               <label htmlFor="email" className="block text-sm">
@@ -76,12 +118,19 @@ const Login = () => {
               />
             </div>
           </div>
-          <button
-            type="submit"
-            className="w-full px-8 py-3 font-bold rounded-md bg-[#AEBDCA] text-gray-900"
-          >
-            Login
-          </button>
+          <div>
+            {error && (
+              <p className="text-lg font-semibold text-red-500 text-center">
+                {error}
+              </p>
+            )}
+            <button
+              type="submit"
+              className="w-full px-8 py-3 font-bold rounded-md bg-[#AEBDCA] text-gray-900"
+            >
+              Login
+            </button>
+          </div>
         </form>
       </div>
     </div>

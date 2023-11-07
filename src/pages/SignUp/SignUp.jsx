@@ -1,15 +1,64 @@
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../providers/AuthProvider";
+import Swal from "sweetalert2";
 
 const SignUp = () => {
-    const handleSignUp = e => {
-        e.preventDefault();
-        const form = e.target;
-        const name = form.name.value;
-        const photo = form.photo.value;
-        const email = form.email.value;
-        const password = form.password.value;
-        console.log(name,photo,email,password)
-    }
+  const [error, setError] = useState();
+  const { user, setUser, googleLogin, signUp, auth, updateUser } =
+    useContext(AuthContext);
+  const handleSignUp = (e) => {
+    e.preventDefault();
+    setError(null);
+    const form = e.target;
+    const name = form.name.value;
+    const photo = form.photo.value;
+    const email = form.email.value;
+    const password = form.password.value;
+    console.log(name, photo, email, password);
+    signUp(email, password)
+      .then((result) => {
+        console.log(result.user);
+        updateUser(name, photo)
+          .then(() => {
+            setUser(auth.currentUser);
+            Swal.fire({
+              position: "center",
+              icon: "success",
+              title: "Logged in successfully",
+              showConfirmButton: false,
+              timer: 1500,
+            });
+          })
+          .catch((error) => {
+            console.error(error.message);
+            setError(error.message);
+          });
+      })
+      .catch((error) => {
+        console.error(error.message);
+        setError(error.message);
+      });
+  };
+  const handleGoogle = () => {
+    setError(null);
+    googleLogin()
+      .then((result) => {
+        setUser(result.user);
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Logged in successfully",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      })
+      .catch((error) => {
+        console.error(error.message);
+        setError(error.message);
+      });
+  };
+  console.log(user);
   return (
     <div className="flex flex-col items-center my-10 mx-10">
       <div className="w-full max-w-md p-4 rounded-md shadow-xl sm:p-8 bg-[#E8DFCA] text-gray-700">
@@ -26,6 +75,7 @@ const SignUp = () => {
           <button
             aria-label="Login with Google"
             type="button"
+            onClick={handleGoogle}
             className="flex items-center justify-center w-full p-2.5 space-x-4 border rounded-md focus:ri focus:ri border-gray-400 focus:ri"
           >
             <svg
@@ -43,7 +93,7 @@ const SignUp = () => {
           <p className="px-3 text-gray-600">OR</p>
           <hr className="w-full text-gray-500" />
         </div>
-        <form onSubmit={handleSignUp} className="space-y-8">
+        <form onSubmit={handleSignUp} className="space-y-5">
           <div className="space-y-4">
             <div className="space-y-2">
               <label htmlFor="name" className="block text-sm">
@@ -53,6 +103,7 @@ const SignUp = () => {
                 type="text"
                 name="name"
                 placeholder="Abul Ahmed"
+                required
                 className="w-full px-3 py-2 border rounded-md border-gray-700 bg-[#E8DFCA] text-gray-600 focus:border-gray-800"
               />
             </div>
@@ -64,6 +115,7 @@ const SignUp = () => {
                 type="text"
                 name="photo"
                 placeholder="https://photourl.com"
+                required
                 className="w-full px-3 py-2 border rounded-md border-gray-700 bg-[#E8DFCA] text-gray-600 focus:border-gray-800"
               />
             </div>
@@ -75,6 +127,7 @@ const SignUp = () => {
                 type="email"
                 name="email"
                 placeholder="name@email.com"
+                required
                 className="w-full px-3 py-2 border rounded-md border-gray-700 bg-[#E8DFCA] text-gray-600 focus:border-gray-800"
               />
             </div>
@@ -94,16 +147,24 @@ const SignUp = () => {
                 type="password"
                 name="password"
                 placeholder="*****"
+                required
                 className="w-full px-3 py-2 border rounded-md border-gray-700 bg-[#E8DFCA] text-gray-600 focus:border-gray-800"
               />
             </div>
           </div>
-          <button
-            type="submit"
-            className="w-full px-8 py-3 font-bold rounded-md bg-[#AEBDCA] text-gray-900"
-          >
-            Sign Up
-          </button>
+          <div>
+            {error && (
+              <p className="text-lg font-semibold text-red-500 text-center">
+                {error}
+              </p>
+            )}
+            <button
+              type="submit"
+              className="w-full px-8 py-3 font-bold rounded-md bg-[#AEBDCA] text-gray-900"
+            >
+              Sign Up
+            </button>
+          </div>
         </form>
       </div>
     </div>
