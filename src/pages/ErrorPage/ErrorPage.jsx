@@ -1,11 +1,13 @@
 import { Link, useRouteError } from "react-router-dom";
 import errorImg from "../../assets/error.jpg";
+import Head from "../../providers/Head";
 
 const ErrorPage = () => {
   const error = useRouteError();
   console.log(error);
   return (
     <div className="flex flex-col md:flex-row gap-4 justify-center min-h-screen">
+      <Head title="Error" />
       <div className="flex-1 flex items-center justify-center">
         <img src={errorImg} alt="" className="w-2/3" />
       </div>
