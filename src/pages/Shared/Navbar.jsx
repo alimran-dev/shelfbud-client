@@ -2,7 +2,7 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import logo from "../../assets/logo.png";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
-import {BsChevronDown} from "react-icons/bs"
+import { BsChevronDown } from "react-icons/bs";
 
 const Navbar = () => {
   const { user, setUser, logOut } = useContext(AuthContext);
@@ -14,12 +14,12 @@ const Navbar = () => {
     logOut()
       .then(() => {
         setUser(null);
-        navigate('/');
+        navigate("/");
       })
-      .catch(error => {
+      .catch((error) => {
         console.error(error.message);
-    })
-  }
+      });
+  };
   return (
     <nav className="bg-[#E8DFCA] border border-gray-200 shadow-md dark:bg-gray-900">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
@@ -30,7 +30,10 @@ const Navbar = () => {
           {user ? (
             <>
               <button
-                onClick={() => { setIsOpen(!isOpen); setOpenDas(false)}}
+                onClick={() => {
+                  setIsOpen(!isOpen);
+                  setOpenDas(false);
+                }}
                 className="relative hidden md:block"
               >
                 <img
@@ -51,18 +54,18 @@ const Navbar = () => {
                     <ul className="py-2">
                       <li>
                         <Link
-                          to={'/settings'}
+                          to={"/settings"}
                           className="block px-4 py-1 font-medium text-gray-700 hover:bg-gray-100"
                         >
                           Settings
                         </Link>
                       </li>
                       <button
-                          onClick={handleLogOut}
-                          className="block bg-gray-700 text-white py-1 px-3 rounded font-semibold my-1 w-4/5 mx-auto"
-                        >
-                          Log Out
-                        </button>
+                        onClick={handleLogOut}
+                        className="block bg-gray-700 text-white py-1 px-3 rounded font-semibold my-1 w-4/5 mx-auto"
+                      >
+                        Log Out
+                      </button>
                     </ul>
                   </div>
                 </div>
@@ -70,7 +73,10 @@ const Navbar = () => {
               <button
                 data-collapse-toggle="navbar-user"
                 type="button"
-                onClick={() => { setIsOpen(!isOpen); setOpenDas(false)}}
+                onClick={() => {
+                  setIsOpen(!isOpen);
+                  setOpenDas(false);
+                }}
                 className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
                 aria-controls="navbar-user"
                 aria-expanded="false"
@@ -275,37 +281,45 @@ const Navbar = () => {
                   <span className="absolute rounded bottom-0 right-1/2 w-0 h-[2.5px] bg-blue-700 group-hover:w-1/2 group-hover:transition-all group-hover:duration-300"></span>
                 </li>
                 <li className="relative">
-                  <button onClick={() => { setOpenDas(!openDas); setIsOpen(false) }} className="flex items-center justify-center gap-2 hover:border-gray-300 rounded-md">Dashboard <BsChevronDown /></button>
+                  <button
+                    onClick={() => {
+                      setOpenDas(!openDas);
+                      setIsOpen(false);
+                    }}
+                    className="flex items-center justify-center gap-2 hover:border-gray-300 rounded-md"
+                  >
+                    Dashboard <BsChevronDown />
+                  </button>
                   <div className={`${openDas ? "static" : "hidden"}`}>
-                  <div className="z-20 absolute top-4 left-1/2 -translate-x-1/2 my-4 text-base list-none bg-[#F5EFE6] w-36">
-                    <ul className="py-2">
-                      <li>
-                        <Link
-                          to={"/myServices"}
-                          className="block px-4 py-1 font-medium text-gray-700 hover:bg-gray-100"
-                        >
-                          My Services
-                        </Link>
-                      </li>
-                      <li>
-                        <Link
-                          to={"/addServices"}
-                          className="block px-4 py-1 font-medium text-gray-700 hover:bg-gray-100"
-                        >
-                          Add Services
-                        </Link>
-                      </li>
-                      <li>
-                        <Link
-                          to={"/mySchedules"}
-                          className="block px-4 py-1 font-medium text-gray-700 hover:bg-gray-100"
-                        >
-                          My Schedules
-                        </Link>
-                      </li>
-                    </ul>
+                    <div className="z-20 absolute top-4 left-1/2 -translate-x-1/2 my-4 text-base list-none bg-[#F5EFE6] w-36">
+                      <ul className="py-2">
+                        <li>
+                          <Link
+                            to={"/myServices"}
+                            className="block px-4 py-1 font-medium text-gray-700 hover:bg-gray-100"
+                          >
+                            My Services
+                          </Link>
+                        </li>
+                        <li>
+                          <Link
+                            to={"/addServices"}
+                            className="block px-4 py-1 font-medium text-gray-700 hover:bg-gray-100"
+                          >
+                            Add Services
+                          </Link>
+                        </li>
+                        <li>
+                          <Link
+                            to={"/mySchedules"}
+                            className="block px-4 py-1 font-medium text-gray-700 hover:bg-gray-100"
+                          >
+                            My Schedules
+                          </Link>
+                        </li>
+                      </ul>
+                    </div>
                   </div>
-                </div>
                 </li>
               </>
             ) : (
