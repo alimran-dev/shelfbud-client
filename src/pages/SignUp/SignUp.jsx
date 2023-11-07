@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 import Swal from "sweetalert2";
 import Head from "../../providers/Head";
@@ -8,6 +8,8 @@ const SignUp = () => {
   const [error, setError] = useState();
   const { user, setUser, googleLogin, signUp, auth, updateUser } =
     useContext(AuthContext);
+  const navigate = useNavigate();
+  const { state } = useLocation();
   const handleSignUp = (e) => {
     e.preventDefault();
     setError(null);
@@ -23,6 +25,9 @@ const SignUp = () => {
         updateUser(name, photo)
           .then(() => {
             setUser(auth.currentUser);
+            {
+              state ? navigate(state) : navigate("/");
+            }
             Swal.fire({
               position: "center",
               icon: "success",
@@ -46,6 +51,9 @@ const SignUp = () => {
     googleLogin()
       .then((result) => {
         setUser(result.user);
+        {
+          state ? navigate(state) : navigate("/");
+        }
         Swal.fire({
           position: "center",
           icon: "success",

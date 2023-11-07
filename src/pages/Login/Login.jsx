@@ -1,13 +1,14 @@
 import { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 import Swal from "sweetalert2";
 import Head from "../../providers/Head";
 
 const Login = () => {
   const [error, setError] = useState();
-  const { user, loginUser, setUser, googleLogin} =
-    useContext(AuthContext);
+  const { user, loginUser, setUser, googleLogin } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const { state } = useLocation();
   const handleLogin = (e) => {
     e.preventDefault();
     setError(null);
@@ -17,14 +18,17 @@ const Login = () => {
     console.log(email, password);
     loginUser(email, password)
       .then((result) => {
-          setUser(result.user);
-          Swal.fire({
-            position: "center",
-            icon: "success",
-            title: "Logged in successfully",
-            showConfirmButton: false,
-              timer: 1500,
-          });
+        setUser(result.user);
+        {
+          state ? navigate(state) : navigate("/");
+        }
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Logged in successfully",
+          showConfirmButton: false,
+          timer: 1500,
+        });
       })
       .catch((error) => {
         console.error(error.message);
@@ -35,14 +39,17 @@ const Login = () => {
     setError(null);
     googleLogin()
       .then((result) => {
-          setUser(result.user);
-          Swal.fire({
-            position: "center",
-            icon: "success",
-            title: "Logged in successfully",
-            showConfirmButton: false,
-              timer: 1500,
-          });
+        setUser(result.user);
+        {
+          state ? navigate(state) : navigate("/");
+        }
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Logged in successfully",
+          showConfirmButton: false,
+          timer: 1500,
+        });
       })
       .catch((error) => {
         console.error(error.message);
@@ -59,7 +66,11 @@ const Login = () => {
         </h2>
         <p className="text-sm text-center text-gray-600">
           Don&apos;t have account?
-          <Link to={"/signup"} className="focus:underline hover:underline">
+          <Link
+            state={state}
+            to={"/signup"}
+            className="focus:underline hover:underline"
+          >
             Sign up here
           </Link>
         </p>

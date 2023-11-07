@@ -7,6 +7,7 @@ import Home from "../pages/Home/Home";
 import AddServices from "../pages/AddServices/AddServices";
 import MyServices from "../pages/MyServices/MyServices";
 import MySchedules from "../pages/MySchedules/MySchedules";
+import PrivateRoutes from "../providers/PrivateRoutes";
 
 const router = createBrowserRouter([
     {
@@ -28,7 +29,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/addServices',
-                element: <AddServices/>
+                element: <PrivateRoutes><AddServices/></PrivateRoutes>
             },
             {
                 path: '/myServices',
