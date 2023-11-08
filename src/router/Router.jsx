@@ -8,6 +8,7 @@ import AddServices from "../pages/AddServices/AddServices";
 import MyServices from "../pages/MyServices/MyServices";
 import MySchedules from "../pages/MySchedules/MySchedules";
 import PrivateRoutes from "../providers/PrivateRoutes";
+import Services from "../pages/Services/Services";
 
 const router = createBrowserRouter([
     {
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
             {
                 path: '/signup',
                 element: <SignUp/>
+            },
+            {
+                path: '/services',
+                element: <Services />,
             },
             {
                 path: '/addServices',

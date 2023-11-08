@@ -28,7 +28,7 @@ const AddServices = () => {
       profile_img,
     };
     console.log(product);
-    fetch("http://localhost:5000/books", {
+    fetch("https://shelfbud-server.vercel.app/books", {
       method: "POST",
       headers: {
         "content-type": "application/json",
