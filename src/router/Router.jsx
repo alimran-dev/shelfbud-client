@@ -9,6 +9,7 @@ import MyServices from "../pages/MyServices/MyServices";
 import MySchedules from "../pages/MySchedules/MySchedules";
 import PrivateRoutes from "../providers/PrivateRoutes";
 import Services from "../pages/Services/Services";
+import Service from "../pages/Service/Service";
 
 const router = createBrowserRouter([
     {
@@ -31,6 +32,11 @@ const router = createBrowserRouter([
             {
                 path: '/services',
                 element: <Services />,
+            },
+            {
+                path: '/services/:id',
+                element: <PrivateRoutes><Service /></PrivateRoutes>,
+                loader: ({params})=>fetch(`https://shelfbud-server.vercel.app/services/${params.id}`)
             },
             {
                 path: '/addServices',
