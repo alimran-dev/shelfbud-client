@@ -1,9 +1,10 @@
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
 
-const MyServiceCard = ({ service }) => {
+const MyServiceCard = ({ service, handleDelete }) => {
   const navigate = useNavigate();
   const { _id, book_name, img, price, description } = service || {};
+
   return (
     <div className="flex items-center gap-5 bg-[#E8DFCA] p-8 rounded-md">
       <div className="w-2/3 h-full">
@@ -26,7 +27,10 @@ const MyServiceCard = ({ service }) => {
           >
             Edit
           </button>
-          <button className="font-medium bg-red-700 text-white py-1.5 px-3 rounded-md">
+          <button
+            onClick={() => handleDelete(_id)}
+            className="font-medium bg-red-700 text-white py-1.5 px-3 rounded-md"
+          >
             Delete
           </button>
         </div>
@@ -38,4 +42,5 @@ const MyServiceCard = ({ service }) => {
 export default MyServiceCard;
 MyServiceCard.propTypes = {
   service: PropTypes.object,
+  handleDelete: PropTypes.func,
 };
