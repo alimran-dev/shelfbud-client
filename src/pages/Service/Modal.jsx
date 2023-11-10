@@ -14,6 +14,7 @@ const Modal = ({ isOpen, setIsOpen }) => {
     const instruction = e.target.instruction.value;
     const provider_email = email;
     const customer_email = user.email;
+    const status = "pending";
     const order = {
       provider_email,
       customer_email,
@@ -22,6 +23,7 @@ const Modal = ({ isOpen, setIsOpen }) => {
       price,
       date,
       instruction,
+      status,
     };
     console.log(order);
     fetch("https://shelfbud-server.vercel.app/orders", {

@@ -19,7 +19,7 @@ const ServicesCard = ({ service }) => {
       <div className="w-1/3 flex justify-center items-center">
         <img src={img} alt="" />
       </div>
-      <div className="flex flex-col justify-center space-y-4 px-20">
+      <div className="flex flex-col justify-center space-y-4 px-20 w-full">
         <p className="text-2xl font-semibold text-gray-700">{book_name}</p>
         <p className="text-lg font-medium text-gray-900">Price: {price}$</p>
         <p className="text-lg">

@@ -54,7 +54,7 @@ const router = createBrowserRouter([
             },
             {
                 path: 'mySchedules',
-                element: <MySchedules />,
+                element: <PrivateRoutes><MySchedules /></PrivateRoutes>,
             }
         ]
     }

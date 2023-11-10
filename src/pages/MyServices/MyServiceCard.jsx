@@ -7,17 +7,15 @@ const MyServiceCard = ({ service, handleDelete }) => {
 
   return (
     <div className="flex items-center gap-5 bg-[#E8DFCA] p-8 rounded-md">
-      <div className="w-2/3 h-full">
-        <img src={img} alt="" className="h-full w-full" />
-      </div>
-      <div className="space-y-4">
+        <img src={img} alt="" className="w-40 h-60" />
+      <div className="space-y-4 w-full">
         <h1 className="text-xl font-semibold text-gray-700">{book_name}</h1>
         <p className="font-medium">Price: {price}$</p>
         <p className="text-gray-600">
           {description.length > 100 ? (
             `${description.slice(0, 100)}....`
           ) : (
-            <></>
+            description
           )}
         </p>
         <div className="flex items-center justify-center gap-16">
