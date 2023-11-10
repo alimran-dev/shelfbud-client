@@ -71,6 +71,7 @@ const SignUp = () => {
   return (
     <div className="flex flex-col items-center my-10 mx-10">
       <Head title="SignUp" />
+      {user && navigate('/')}
       <div className="w-full max-w-md p-4 rounded-md shadow-xl sm:p-8 bg-[#E8DFCA] text-gray-700">
         <h2 className="mb-3 text-3xl font-semibold text-center">
           Create a new account
