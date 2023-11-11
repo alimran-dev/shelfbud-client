@@ -1,6 +1,6 @@
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import logo from "../../assets/logo.png";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
 import { BsChevronDown } from "react-icons/bs";
 
@@ -10,6 +10,8 @@ const Navbar = () => {
   const [openDas, setOpenDas] = useState(false);
   const { displayName, photoURL, email } = user || {};
   const navigate = useNavigate();
+  const menuRef = useRef();
+  const dasRef = useRef();
   const handleLogOut = () => {
     logOut()
       .then(() => {
@@ -20,6 +22,18 @@ const Navbar = () => {
         console.error(error.message);
       });
   };
+  useEffect(() => {
+    document.addEventListener("click", (e) => {
+      const menu = menuRef.current.contains(e.target);
+      const das = dasRef.current.contains(e.target);
+      if (!menu) {
+        setIsOpen(false);
+      }
+      if (!das) {
+        setOpenDas(false);
+      }
+    });
+  }, []);
   return (
     <nav className="bg-[#E8DFCA] border border-gray-200 shadow-md dark:bg-gray-900">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
@@ -37,6 +51,7 @@ const Navbar = () => {
                 className="relative hidden md:block hover:cursor-pointer"
               >
                 <img
+                  ref={menuRef}
                   src={photoURL}
                   alt=""
                   className="h-12 w-12 rounded-full mr-3"
@@ -298,6 +313,7 @@ const Navbar = () => {
                 </li>
                 <li className="relative">
                   <button
+                    ref={dasRef}
                     onClick={() => {
                       setOpenDas(!openDas);
                       setIsOpen(false);
