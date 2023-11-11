@@ -6,14 +6,14 @@ import { MdOutlineEmail } from "react-icons/md";
 
 const Footer = () => {
   return (
-    <footer className="bg-[#E8DFCA]">
+    <footer className="bg-[#E8DFCA] mt-10">
       <div className="mx-auto w-full max-w-screen-xl p-10">
         <div className="md:flex md:justify-between">
           <div className="mb-6 md:mb-0">
             <Link to={"/"} className="flex items-center">
               <img src={logo} alt="" className="w-60" />
             </Link>
-            <div className="space-y-2 py-5">
+            <div className="space-y-2 py-5 pr-5">
               <p className="flex items-center gap-2 text-lg font-medium text-gray-700">
                 <FaLocationDot /> 41/a, Moulana Bhashani Stadium, Dhaka
               </p>
