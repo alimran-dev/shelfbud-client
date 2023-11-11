@@ -12,6 +12,8 @@ const Navbar = () => {
   const navigate = useNavigate();
   const menuRef = useRef();
   const dasRef = useRef();
+  const mobLogRef = useRef();
+  const mobMenuRef = useRef();
   const handleLogOut = () => {
     logOut()
       .then(() => {
@@ -24,9 +26,11 @@ const Navbar = () => {
   };
   useEffect(() => {
     document.addEventListener("click", (e) => {
-      const menu = menuRef.current.contains(e.target);
-      const das = dasRef.current.contains(e.target);
-      if (!menu) {
+      const menu = menuRef?.current?.contains(e.target);
+      const das = dasRef?.current?.contains(e.target);
+      const mobLog = mobLogRef?.current?.contains(e.target);
+      const mobMenu = mobMenuRef?.current?.contains(e.target);
+      if (!menu && !mobLog && !mobMenu) {
         setIsOpen(false);
       }
       if (!das) {
@@ -87,6 +91,7 @@ const Navbar = () => {
                 </div>
               </div>
               <div
+                ref={mobLogRef}
                 onClick={() => {
                   setIsOpen(!isOpen);
                   setOpenDas(false);
@@ -203,6 +208,7 @@ const Navbar = () => {
                 Login
               </button>
               <button
+                ref={mobMenuRef}
                 onClick={() => setIsOpen(!isOpen)}
                 data-collapse-toggle="navbar-user"
                 type="button"
