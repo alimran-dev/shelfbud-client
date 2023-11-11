@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 
 const BookingCard = ({ booking }) => {
-  const { customer_email, book_name, img, price, date, status } = booking || {};
+  const { book_name, img, price, date, status } = booking || {};
   return (
     <div className="flex items-center gap-8 bg-[#E8DFCA] p-5 rounded">
       <div className="w-40 h-60">
@@ -11,7 +11,6 @@ const BookingCard = ({ booking }) => {
         <p className="text-2xl font-semibold text-gray-800">{book_name}</p>
         <p className="text-lg font-medium">Price: {price}$</p>
         <p className="font-medium text-lg">Date: {date}</p>
-        <p className="text-lg font-medium">Purchased with: {customer_email}</p>
         <p className="text-xl font-medium capitalize">
           Order status:{" "}
           <span
