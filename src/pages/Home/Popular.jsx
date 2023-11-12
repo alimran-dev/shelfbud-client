@@ -19,6 +19,9 @@ const Popular = () => {
   }, []);
   return (
     <div>
+      <h1 className="text-4xl lg:text-5xl text-gray-700 font-bold text-center pt-8">
+        Most Popular
+      </h1>
       <div>
         {services?.map((service) => (
           <PopularCard key={service._id} service={service} />
