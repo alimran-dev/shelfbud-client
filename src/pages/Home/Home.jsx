@@ -1,6 +1,7 @@
 import Head from "../../providers/Head";
 import Banner from "./Banner";
 import Faq from "./Faq";
+import Location from "./Location";
 import Offers from "./Offers";
 import Popular from "./Popular";
 
@@ -13,6 +14,7 @@ const Home = () => {
         <Popular />
         <Offers />
         <Faq />
+        <Location />
       </div>
     </div>
   );
