@@ -1,5 +1,6 @@
 import Head from "../../providers/Head";
 import Banner from "./Banner";
+import Faq from "./Faq";
 import Offers from "./Offers";
 import Popular from "./Popular";
 
@@ -11,6 +12,7 @@ const Home = () => {
         <Banner />
         <Popular />
         <Offers />
+        <Faq />
       </div>
     </div>
   );
