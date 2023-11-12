@@ -1,11 +1,17 @@
 import { useNavigate } from "react-router-dom";
 import banner from "../../assets/shelfbud-banner.png";
 import { Typewriter } from "react-simple-typewriter";
+import { motion } from "framer-motion";
 
 const Banner = () => {
   const navigate = useNavigate();
   return (
-    <div className="bg-[#E8DFCA] md:h-[400px] lg:h-[550px] mx-12 my-10 p-10 rounded-md flex flex-col md:flex-row items-center">
+    <motion.div
+      initial={{ opacity: 0, scale: 0 }}
+      animate={{ opacity: 1, scale: 1 }}
+      exit={{ opacity: 0, scale: 0 }}
+      className="bg-[#E8DFCA] md:h-[400px] lg:h-[550px] mx-12 my-10 p-10 rounded-md flex flex-col md:flex-row items-center"
+    >
       <div className="flex-1 space-y-5">
         <h1 className="text-3xl lg:text-5xl font-bold text-gray-700">
           Discover ShelfBud: Dive into Your Next{" "}
@@ -35,7 +41,7 @@ const Banner = () => {
       <div className="flex-1">
         <img src={banner} alt="" className="w-full" />
       </div>
-    </div>
+    </motion.div>
   );
 };
 
