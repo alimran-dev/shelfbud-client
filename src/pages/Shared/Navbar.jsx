@@ -42,7 +42,7 @@ const Navbar = () => {
     <nav className="bg-[#E8DFCA] border border-gray-200 shadow-md dark:bg-gray-900">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <Link to={"/"} className="flex items-center">
-          <img src={logo} className="h-8 mr-3" alt="Logo" />
+          <img src={logo} className="h-10 md:h-14 mr-3" alt="Logo" />
         </Link>
         <div className="flex items-center md:order-2">
           {user ? (
