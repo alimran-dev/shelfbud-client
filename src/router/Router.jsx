@@ -11,53 +11,84 @@ import PrivateRoutes from "../providers/PrivateRoutes";
 import Services from "../pages/Services/Services";
 import Service from "../pages/Service/Service";
 import EditService from "../pages/MyServices/EditService";
+import Settings from "../pages/Settings/Settings";
 
 const router = createBrowserRouter([
-    {
-        path: '/',
-        element: <Root />,
-        errorElement: <ErrorPage />,
-        children: [
-            {
-                path: '/',
-                element: <Home />,
-            },
-            {
-                path: '/login',
-                element: <Login/>,
-            },
-            {
-                path: '/signup',
-                element: <SignUp/>
-            },
-            {
-                path: '/services',
-                element: <Services />,
-            },
-            {
-                path: '/services/:id',
-                element: <PrivateRoutes><Service /></PrivateRoutes>,
-                loader: ({params})=>fetch(`https://shelfbud-server.vercel.app/services/${params.id}`)
-            },
-            {
-                path: '/addServices',
-                element: <PrivateRoutes><AddServices/></PrivateRoutes>
-            },
-            {
-                path: '/myServices',
-                element: <PrivateRoutes><MyServices/></PrivateRoutes>,
-            },
-            {
-                path: '/editService/:id',
-                element: <PrivateRoutes><EditService /></PrivateRoutes>,
-                loader: ({params})=>fetch(`https://shelfbud-server.vercel.app/services/${params.id}`)
-            },
-            {
-                path: 'mySchedules',
-                element: <PrivateRoutes><MySchedules /></PrivateRoutes>,
-            }
-        ]
-    }
-])
+  {
+    path: "/",
+    element: <Root />,
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        path: "/",
+        element: <Home />,
+      },
+      {
+        path: "/login",
+        element: <Login />,
+      },
+      {
+        path: "/signup",
+        element: <SignUp />,
+      },
+      {
+        path: "/services",
+        element: <Services />,
+      },
+      {
+        path: "/services/:id",
+        element: (
+          <PrivateRoutes>
+            <Service />
+          </PrivateRoutes>
+        ),
+        loader: ({ params }) =>
+          fetch(`https://shelfbud-server.vercel.app/services/${params.id}`),
+      },
+      {
+        path: "/addServices",
+        element: (
+          <PrivateRoutes>
+            <AddServices />
+          </PrivateRoutes>
+        ),
+      },
+      {
+        path: "/myServices",
+        element: (
+          <PrivateRoutes>
+            <MyServices />
+          </PrivateRoutes>
+        ),
+      },
+      {
+        path: "/editService/:id",
+        element: (
+          <PrivateRoutes>
+            <EditService />
+          </PrivateRoutes>
+        ),
+        loader: ({ params }) =>
+          fetch(`https://shelfbud-server.vercel.app/services/${params.id}`),
+      },
+      {
+        path: "mySchedules",
+        element: (
+          <PrivateRoutes>
+            <MySchedules />
+          </PrivateRoutes>
+        ),
+      },
+      {
+        path: "/settings",
+        element: (
+          <PrivateRoutes>
+            <Settings />
+          </PrivateRoutes>
+        ),
+      },
+    ],
+  },
+]);
 
 export default router;
