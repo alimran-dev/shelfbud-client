@@ -1,8 +1,15 @@
-# React + Vite
+# ShelfBud - Spread Knowledge Together
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Live Site: [https://shelfbud-air.web.app](https://shelfbud-air.web.app/services)
 
-Currently, two official plugins are available:
+## Features of ShelfBud
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Anyone can see all the available books posted by the shelfbud users.
+- Anyone can create account with email/password or gmail. Using firebase for user authentication.
+- User can post/add their books which will be shown dynamically in services section.
+- User can Edit his/her added book data.
+- User can change the order status for his/her product. Which will be shown to buyer's bookings section.
+- User can delete his/her book.
+### Extra features
+- User can change his/her password from settings.
+- User can edit his/her profile.
