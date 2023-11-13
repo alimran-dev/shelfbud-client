@@ -31,6 +31,7 @@ const Modal = ({ isOpen, setIsOpen }) => {
       headers: {
         "content-type": "application/json",
       },
+      credentials: 'include',
       body: JSON.stringify(order),
     })
       .then((res) => res.json())

@@ -9,7 +9,7 @@ const MyServices = () => {
   const { user } = useContext(AuthContext);
   const { email } = user || {};
   useEffect(() => {
-    fetch(`https://shelfbud-server.vercel.app/myBooks?email=${email}`)
+    fetch(`https://shelfbud-server.vercel.app/myBooks?email=${email}`,{credentials:"include"})
       .then((res) => res.json())
       .then((data) => setServices(data));
   }, [email]);
@@ -27,6 +27,7 @@ const MyServices = () => {
       if (result.isConfirmed) {
         fetch(`https://shelfbud-server.vercel.app/deleteBook/${id}`, {
           method: "DELETE",
+          credentials: "include",
         })
           .then((res) => res.json())
           .then((data) => {

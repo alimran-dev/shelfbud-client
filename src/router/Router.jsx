@@ -43,7 +43,7 @@ const router = createBrowserRouter([
           </PrivateRoutes>
         ),
         loader: ({ params }) =>
-          fetch(`https://shelfbud-server.vercel.app/services/${params.id}`),
+          fetch(`https://shelfbud-server.vercel.app/services/${params.id}`,{credentials: "include"}),
       },
       {
         path: "/addServices",
@@ -69,7 +69,7 @@ const router = createBrowserRouter([
           </PrivateRoutes>
         ),
         loader: ({ params }) =>
-          fetch(`https://shelfbud-server.vercel.app/services/${params.id}`),
+          fetch(`https://shelfbud-server.vercel.app/services/${params.id}`,{credentials: "include"}),
       },
       {
         path: "mySchedules",

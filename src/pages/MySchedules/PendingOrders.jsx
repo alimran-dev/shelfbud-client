@@ -6,7 +6,7 @@ const PendingOrders = () => {
   const [orders, setOrders] = useState();
   const { user } = useContext(AuthContext);
   useEffect(() => {
-    fetch(`https://shelfbud-server.vercel.app/myOrders?email=${user.email}`)
+    fetch(`https://shelfbud-server.vercel.app/myOrders?email=${user.email}`,{credentials:"include"})
       .then((res) => res.json())
       .then((data) => {
         console.log(data);

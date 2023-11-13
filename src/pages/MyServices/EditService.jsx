@@ -39,6 +39,7 @@ const EditService = () => {
     console.log(product);
     fetch(`https://shelfbud-server.vercel.app/books/${_id}`, {
       method: "PUT",
+      credentials:"include",
       headers: {
         "content-type": "application/json",
       },

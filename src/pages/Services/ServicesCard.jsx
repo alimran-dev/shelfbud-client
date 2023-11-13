@@ -12,7 +12,6 @@ const ServicesCard = ({ service }) => {
     description,
     profile_img,
   } = service || {};
-  console.log(service);
   const navigate = useNavigate();
   return (
     <div className="flex bg-[#E8DFCA] my-5 mx-12 p-10 rounded-md">
@@ -23,7 +22,7 @@ const ServicesCard = ({ service }) => {
         <p className="text-2xl font-semibold text-gray-700">{book_name}</p>
         <p className="text-lg font-medium text-gray-900">Price: {price}$</p>
         <p className="text-lg">
-          {description.length > 100
+          {description?.length > 100
             ? `${description.slice(0, 100)}....`
             : description}
         </p>

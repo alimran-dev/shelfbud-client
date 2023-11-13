@@ -6,7 +6,7 @@ const Bookings = () => {
     const [bookings, setBookings] = useState();
     const { user } = useContext(AuthContext);
     useEffect(() => {
-        fetch(`https://shelfbud-server.vercel.app/bookings?email=${user.email}`)
+        fetch(`https://shelfbud-server.vercel.app/bookings?email=${user.email}`,{credentials:"include"})
           .then((res) => res.json())
           .then((data) => {
             console.log(data);

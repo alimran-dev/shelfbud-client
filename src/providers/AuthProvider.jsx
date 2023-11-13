@@ -12,6 +12,7 @@ import {
   updateProfile,
 } from "firebase/auth";
 import app from "../firebase/firebase.config";
+import axios from "axios";
 
 export const AuthContext = createContext();
 const auth = getAuth(app);
@@ -45,6 +46,7 @@ const AuthProvider = ({ children }) => {
   };
 
   useEffect(() => {
+    const loggedUser = auth.currentUser?.email || user?.email;
     const unSubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         setUser(auth.currentUser);
@@ -52,12 +54,16 @@ const AuthProvider = ({ children }) => {
       } else {
         setUser(null);
         setLoading(false);
+        axios.post("https://shelfbud-server.vercel.app/logout",loggedUser,{withCredentials:true})
+          .then(res => {
+            console.log(res.data);
+        })
       }
     });
     return () => {
       unSubscribe();
     };
-  }, []);
+  }, [user?.email]);
 
   const AuthInfo = {
     user,

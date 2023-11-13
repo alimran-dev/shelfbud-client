@@ -3,26 +3,36 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 import Swal from "sweetalert2";
 import Head from "../../providers/Head";
+import axios from "axios";
 
 const Login = () => {
   const [error, setError] = useState();
   const { user, loginUser, setUser, googleLogin } = useContext(AuthContext);
   const navigate = useNavigate();
   const { state } = useLocation();
-  console.log(state);
   const handleLogin = (e) => {
     e.preventDefault();
     setError(null);
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
-    console.log(email, password);
     loginUser(email, password)
       .then((result) => {
-        setUser(result.user);
-        {
-          state ? navigate(state) : navigate("/");
-        }
+        const user = { email };
+        axios
+          .post("https://shelfbud-server.vercel.app/jwt", user, {
+            withCredentials: true,
+          })
+          .then((res) => {
+            console.log(res.data);
+            setUser(result.user);
+            if (res.data.success) {
+              {
+                state ? navigate(state) : navigate("/");
+              }
+            }
+          });
+
         Swal.fire({
           position: "center",
           icon: "success",
@@ -40,28 +50,36 @@ const Login = () => {
     setError(null);
     googleLogin()
       .then((result) => {
-        setUser(result.user);
-        {
-          state ? navigate(state) : navigate("/");
-        }
-        Swal.fire({
-          position: "center",
-          icon: "success",
-          title: "Logged in successfully",
-          showConfirmButton: false,
-          timer: 1500,
-        });
+        axios
+          .post("https://shelfbud-server.vercel.app/jwt", user, {
+            withCredentials: true,
+          })
+          .then((res) => {
+            console.log(res.data);
+            if (res.data.success) {
+              setUser(result.user);
+              {
+                state ? navigate(state) : navigate("/");
+              }
+              Swal.fire({
+                position: "center",
+                icon: "success",
+                title: "Logged in successfully",
+                showConfirmButton: false,
+                timer: 1500,
+              });
+            }
+          });
       })
       .catch((error) => {
         console.error(error.message);
         setError(error.message);
       });
   };
-  console.log(user);
   return (
     <div className="flex flex-col items-center my-10 mx-10">
       <Head title="Login" />
-      {user && !state && navigate('/')}
+      {user && !state && navigate("/")}
       <div className="w-full max-w-md p-4 rounded-md shadow-xl sm:p-8 bg-[#E8DFCA] text-gray-700">
         <h2 className="mb-3 text-3xl font-semibold text-center">
           Login to your account

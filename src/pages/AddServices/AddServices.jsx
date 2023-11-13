@@ -33,6 +33,7 @@ const AddServices = () => {
       headers: {
         "content-type": "application/json",
       },
+      credentials: "include",
       body: JSON.stringify(product),
     })
       .then((res) => res.json())
