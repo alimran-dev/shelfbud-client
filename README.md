@@ -1,6 +1,6 @@
 # ShelfBud - Spread Knowledge Together
 
-Live Site: [https://shelfbud-air.web.app](https://shelfbud-air.web.app/services)
+Live Site: [https://shelfbud-air.web.app](https://shelfbud-air.web.app/)
 
 ## Features of ShelfBud
 
